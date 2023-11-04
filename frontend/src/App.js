@@ -1,11 +1,19 @@
-import './App.css';
+import {BrowserRouter as Router,Routes, Route} from "react-router-dom";
+import Dashboard from './Dashboard';
+import QuestionsCard from './QuestionsCard';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p> Welcome to React</p>
-      </header>
+    <div>
+      
+        <Router>
+          <Routes>
+            <Route path="/" element={<Dashboard/>} />
+            <Route path="/questions" element={<QuestionsCard/>} />
+
+          </Routes>
+        </Router>
+      
     </div>
   );
 }
