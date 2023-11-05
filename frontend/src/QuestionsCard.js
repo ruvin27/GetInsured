@@ -15,7 +15,7 @@ function QuestionsCard() {
   const [animateCard, setAnimateCard] = useState(''); // Initialize the animation state
   const [isLoading, setIsLoading] = useState(false); // Step 1: Define the state variable
   const navigate = useNavigate();
-  const [otherValue, setOtherValue] = useState('')
+  
 
   const setNextQuestion = () => {
     if (questionCount < questions.length - 1) {
@@ -49,12 +49,7 @@ function QuestionsCard() {
 		setDisplayOptions(option);
 	};
 
-  const handleInputChange = (e) =>{
-    const {value} = e.target;
-    setOtherValue(value)
-    setDisplayOptions(value)
-    
-  }
+  
 
   const handleSubmit = async () => {
     setIsLoading(true); // Set loading state to true
@@ -71,10 +66,11 @@ function QuestionsCard() {
       });
 
       console.log(response.data);
+      console.log(response.data[0].message.content)
+      localStorage.setItem('response', response.data[0].message.content)
     } catch (error) {
       console.error('Error:', error);
-      console.log(res.data[0].message.content)
-      localStorage.setItem('response', res.data[0].message.content)
+      
     } finally {
       setIsLoading(false); // Set loading state to false once you receive a response
       
@@ -99,9 +95,7 @@ function QuestionsCard() {
 									</option>
 								))}
 							</select>
-              {displayOptions === 'Other' && (
-                <input type="text" name='othervalue' placeholder="Enter the value"  value={otherValue} className={CardCss.select2} onChange={handleInputChange}/>
-              )}
+              
 						</Card.Text>
 					</Card.Body>
 				</Card>
