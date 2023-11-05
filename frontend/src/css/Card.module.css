@@ -4,9 +4,57 @@
     align-items: center; 
     width: 50%;
     height: 70vh;
-    /* border: 1px solid black; */
     border-radius: 10px;
 	box-shadow: 4px 4px 10px rgba(185, 27, 27, 0.2);
     padding: 40px;
-    margin:0 auto;
+    margin:40px auto;
 }
+@media (max-width: 768px) {
+    .container {
+        width: 90%; /* Adjust the width for smaller screens */
+        padding: 20px; /* Adjust the padding for smaller screens */
+    }
+    .cardImage{
+        width: 80%;
+    }
+}
+.card{
+    text-align: center;
+
+}
+
+.cardImage{
+    width: 60%;
+}
+
+/* Apply these styles to the "Get Insured" button */
+.button {
+    background-color: #d62311; /* Change the button's background color */
+    color: #fff; /* Set text color to white */
+    border: none; /* Remove the button border */
+    border-radius: 5px; /* Add rounded corners */
+    padding: 10px 20px; /* Add padding for better spacing */
+    font-size: 16px; /* Increase font size */
+    cursor: pointer; /* Add a pointer cursor on hover */
+  }
+  
+  /* Style the button on hover */
+  .button:hover {
+    background-color: #be2113; /* Darker color on hover */
+  }
+  
+  /* Style for the card title */
+.CardTitle {
+    font-size: 24px; /* Adjust the font size */
+    color: #333; /* Change the text color */
+    margin-bottom: 10px; /* Add spacing below the title */
+    font-weight: bold; /* Make the text bold */
+  }
+  
+  /* Style for the card text */
+  .CardText {
+    font-size: 18px; /* Adjust the font size */
+    color: #666; /* Change the text color */
+    margin-bottom: 20px; /* Add spacing below the text */
+  }
+  

@@ -1,21 +1,20 @@
-import {BrowserRouter as Router,Routes, Route} from "react-router-dom";
-import Dashboard from './Dashboard';
-import QuestionsCard from './QuestionsCard';
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Dashboard from "./Dashboard";
+import QuestionsCard from "./QuestionsCard";
+import Navbar from "./Navbar";
 function App() {
-  return (
-    <div>
-      
-        <Router>
-          <Routes>
-            <Route path="/" element={<Dashboard/>} />
-            <Route path="/questions" element={<QuestionsCard/>} />
+	return (
+		<div>
+			<Navbar />
 
-          </Routes>
-        </Router>
-      
-    </div>
-  );
+			<Router basename="/">
+				<Routes>
+					<Route path="/" element={<Dashboard />} />
+					<Route path="/questions" element={<QuestionsCard />} />
+				</Routes>
+			</Router>
+		</div>
+	);
 }
 
 export default App;

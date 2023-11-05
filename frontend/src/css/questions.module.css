@@ -1,0 +1,103 @@
+/* Style for the card text */
+.CardText {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for the select element */
+  .select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  /* Style for the buttons */
+  .button {
+    background-color: #d62311;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: #be2113;
+  }
+  
+  .container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 70vh;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(185, 27, 27, 0.2);
+    padding: 40px;
+    margin: 40px auto;
+  }
+  
+  /* Button container on the left */
+  .buttonContainerLeft {
+    position: absolute;
+    bottom: 30px; /* Adjust the vertical position */
+    left: 30px; /* Adjust the horizontal position */
+  }
+  
+  /* Button container on the right */
+  .buttonContainerRight {
+    position: absolute;
+    bottom: 30px; /* Adjust the vertical position */
+    right: 30px; /* Adjust the horizontal position */
+  }
+@media (max-width: 768px) {
+    .container {
+        width: 90%; /* Adjust the width for smaller screens */
+        padding: 20px; /* Adjust the padding for smaller screens */
+    }
+
+}
+
+/* Style for the card */
+.card {
+    text-align: center;
+    background-color: #fff; /* Background color of the card */
+    border: 1px solid #ddd; /* Add a border */
+    border-radius: 10px; /* Add rounded corners */
+    padding: 20px; /* Add padding for better spacing */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  }
+  
+  /* Style for the card title */
+  .cardTitle {
+    font-size: 24px; /* Adjust the font size */
+    color: #333; /* Change the text color */
+    margin-bottom: 10px; /* Add spacing below the title */
+    font-weight: bold; /* Make the text bold */
+  }
+  
+  /* Style for the card text */
+  .cardText {
+    font-size: 18px; /* Adjust the font size */
+    color: #666; /* Change the text color */
+    margin-bottom: 20px; /* Add spacing below the text */
+  }
+  
+  /* Style for the select element */
+  .select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  /* Style for the buttons */
+
+  
