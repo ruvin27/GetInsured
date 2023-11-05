@@ -50,8 +50,8 @@ function QuestionsCard() {
     } 
     // console.log(temp);
     setPrompt(temp);
-    const response = await axios.post('/getresponse', {
-      prompt : prompt
+    const response = await axios.post('http://localhost:5000/getresponse', {
+      prompt : temp
     }).then((res) => {
       console.log(res.data)
     })
