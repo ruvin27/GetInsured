@@ -10,7 +10,7 @@ function QuestionsCard() {
 	const [displayquestion, setDisplayQuestion] = useState(questions[0]);
 	const [displayOptions, setDisplayOptions] = useState(questions[0].answer);
   const [animateCard, setAnimateCard] = useState(''); // Initialize the animation state
-  const [prompt, setPrompt] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // Step 1: Define the state variable
 
   const setNextQuestion = () => {
     if (questionCount < questions.length - 1) {
@@ -43,23 +43,31 @@ function QuestionsCard() {
 	};
 
   const handleSubmit = async () => {
+    setIsLoading(true); // Set loading state to true
+
     questions[questionCount].answer = displayOptions;
     let temp = "";
     for (let question of questions) {
       temp +=  question.question + " "+ question.answer + " ";
     } 
     // console.log(temp);
-    setPrompt(temp);
-    const response = await axios.post('http://localhost:5000/getresponse', {
-      prompt : temp
-    }).then((res) => {
-      console.log(res.data)
-    })
+    try {
+      const response = await axios.post('http://localhost:5000/getresponse', {
+        prompt: temp,
+      });
+
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setIsLoading(false); // Set loading state to false once you receive a response
+    }
     
   }
 
 	return (
 		<div>
+      {isLoading ? "Loading..." : 
 			<Container className={`${CardCss.container} ${animateCard ? CardCss[animateCard] : ''}`}>
 				<Card className={`${CardCss.card} text-center`}>
 					<Card.Body>
@@ -104,7 +112,7 @@ function QuestionsCard() {
             </Button>}
 					
 				</div>
-			</Container>
+			</Container>}
 		</div>
 	);
 }
