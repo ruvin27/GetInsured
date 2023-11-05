@@ -5,12 +5,16 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import questions from './questions.js';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+
 function QuestionsCard() {
 	const [questionCount, setQuestionCount] = useState(0);
 	const [displayquestion, setDisplayQuestion] = useState(questions[0]);
 	const [displayOptions, setDisplayOptions] = useState(questions[0].answer);
   const [animateCard, setAnimateCard] = useState(''); // Initialize the animation state
   const [isLoading, setIsLoading] = useState(false); // Step 1: Define the state variable
+  const navigate = useNavigate();
 
   const setNextQuestion = () => {
     if (questionCount < questions.length - 1) {
@@ -22,6 +26,8 @@ function QuestionsCard() {
       setDisplayOptions(nextQuestion.options[0]); // Set the default value as the first option
       setTimeout(() => setAnimateCard('slide-in-left'), 1200); // Apply the enter animation after 1.2 seconds
     }
+
+
   };
   
   const setPreviousQuestion = () => {
@@ -59,8 +65,12 @@ function QuestionsCard() {
       console.log(response.data);
     } catch (error) {
       console.error('Error:', error);
+      console.log(res.data[0].message.content)
+      localStorage.setItem('response', res.data[0].message.content)
     } finally {
       setIsLoading(false); // Set loading state to false once you receive a response
+      
+    navigate("/result")
     }
     
   }
@@ -105,7 +115,7 @@ function QuestionsCard() {
 					)}
 				</div>
 				<div className={CardCss.buttonContainerRight}>
-        {questionCount !== questions.length - 1 ? <Button variant="primary" className={CardCss.button} style={{ width: "120px" }} onClick={() => setNextQuestion()}>
+        {questionCount !== questions.length - 1 ? <Button variant="primary" className={CardCss.button} style={{ width: "120px" }} onClick={setNextQuestion}>
 						Next
             </Button> : <Button variant="primary" className={CardCss.button} style={{ width: "120px" }} onClick={handleSubmit}>
 						Submit
