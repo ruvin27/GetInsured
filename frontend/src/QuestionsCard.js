@@ -1,17 +1,16 @@
 import { Container } from 'react-bootstrap';
-import CardCss from "./css/Card.module.css";
+import CardCss from "./css/questions.module.css";
 import {useState} from "react";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import questions from './questions.js';
-import Navbar from "./Navbar.js";
-
+import axios from 'axios';
 function QuestionsCard() {
 	const [questionCount, setQuestionCount] = useState(0);
 	const [displayquestion, setDisplayQuestion] = useState(questions[0]);
 	const [displayOptions, setDisplayOptions] = useState(questions[0].answer);
   const [animateCard, setAnimateCard] = useState(''); // Initialize the animation state
-
+  const [prompt, setPrompt] = useState("");
 
   const setNextQuestion = () => {
     if (questionCount < questions.length - 1) {
@@ -43,9 +42,20 @@ function QuestionsCard() {
 		setDisplayOptions(option);
 	};
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     questions[questionCount].answer = displayOptions;
-    console.log(questions);
+    let temp = "";
+    for (let question of questions) {
+      temp +=  question.question + " "+ question.answer + " ";
+    } 
+    // console.log(temp);
+    setPrompt(temp);
+    const response = await axios.post('/getresponse', {
+      prompt : prompt
+    }).then((res) => {
+      console.log(res.data)
+    })
+    
   }
 
 	return (
