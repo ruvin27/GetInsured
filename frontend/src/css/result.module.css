@@ -2,8 +2,7 @@
 	display: flex; 
     justify-content: center; 
     align-items: center; 
-    width: 50%;
-    height: 30vh;
+    width: 80%;
     border-radius: 10px;
 	box-shadow: 4px 4px 10px rgba(185, 27, 27, 0.2);
     padding: 40px;
@@ -13,7 +12,7 @@
 	display: flex; 
     justify-content: center; 
     align-items: center; 
-    width: 50%;
+    width: 70%;
     height: 15vh;
     border-radius: 10px;
 	box-shadow: 4px 4px 10px rgba(185, 27, 27, 0.2);
@@ -29,8 +28,17 @@
     height: 5vh;
     border-radius: 10px;
 	box-shadow: 4px 4px 10px rgba(185, 27, 27, 0.2);
-    padding: 40px;
-    margin: auto;
+    padding: 30px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.container2:hover{
+    transform: scale(1.05);
+}
+
+.container:hover{
+    transform: scale(1.02);
 }
 @media (max-width: 768px) {
     .container {
@@ -51,11 +59,12 @@
     width: 60%;
 }
 .resultTitle {
-    font-size: 25px; /* Adjust the font size */
+    font-size: 20px; /* Adjust the font size */
     color: #333; /* Change the text color */
     margin-bottom: 10px; /* Add spacing below the title */
     font-weight: bold; /* Make the text bold */
     padding-top: 25px;
+    text-align: center;
   }
   
   /* Style for the card text */

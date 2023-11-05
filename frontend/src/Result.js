@@ -22,8 +22,8 @@ function Result() {
       <div>
         
         <Container className={CardCss.container}>
-        <Card style={{ width: '37rem', textAlign: 'center' }}>
-          <Card.Text className={CardCss.resultTitle}>  You have to choose <i>{firstLine}</i> !! </Card.Text>
+        <Card style={{ width: '37rem', textAlign: 'center', padding: "20px" }}>
+          <Card.Text className={CardCss.resultTitle}>  You should consider choosing <i>{firstLine}</i> !! </Card.Text>
           <Card.Body>
             <Card.Text className={CardCss.resultText}>{restOfLines}</Card.Text>
           </Card.Body>
@@ -31,7 +31,7 @@ function Result() {
         </Container>
         
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-  <h3 className={CardCss.resultTitle}>Other options you want to explore</h3>
+  <h3 className={CardCss.resultTitle}>Other options you may explore</h3>
 </div>
         <Container className={CardCss.container3}>
         <Container className={CardCss.container2}>

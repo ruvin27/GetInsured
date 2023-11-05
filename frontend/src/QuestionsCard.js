@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card';
 import questions from './questions.js';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import LoadingSpinner from './LoadingSpinner'
 
 function QuestionsCard() {
 	const [questionCount, setQuestionCount] = useState(0);
@@ -81,7 +81,7 @@ function QuestionsCard() {
 
 	return (
 		<div>
-      {isLoading ? "Loading..." : 
+      {isLoading ? <LoadingSpinner/> : 
 			<Container className={`${CardCss.container} ${animateCard ? CardCss[animateCard] : ''}`}>
 				<Card className={`${CardCss.card} text-center`}>
 					<Card.Body>

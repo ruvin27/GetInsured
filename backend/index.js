@@ -1,8 +1,6 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const cors = require('cors');
 const app = express();
-const MongoUrl = require('./config')
 require("dotenv").config();
 
 const PORT = process.env.PORT || 5000;
@@ -20,21 +18,13 @@ app.use(express.json(),cors({
 	optionsSuccessStatus: 204,
   }));
 
-// Connect to MongoDB
-mongoose
-.connect(MongoUrl)
-.then(() => {
-    console.log("Connected to MongoDB");
-});
-
-
 
 
 app.post("/getresponse", async (req, res) => {
     const {prompt} = req.body;
     console.log(prompt)
     const completion = await openai.chat.completions.create({
-    messages: [{ role: "user", content: `${prompt} For the user input given, what type of insurance can be preferred to him whether Property or Liability insurance or both . Give me answer first just "Property" or "Liability" or "Both Property and Liability"  without any additional words and then give the explanation in next sentence.` }],
+    messages: [{ role: "user", content: `${prompt} For the user input given, what type of insurance can be preferred to him whether Property or Liability insurance. Give me answer first just "Property" or "Liability" without any additional words and then give the explanation in next sentence. Also give me risk factors to my business based on this data from past events` }],
     model: "gpt-3.5-turbo",
   });
   res.send(completion.choices)
