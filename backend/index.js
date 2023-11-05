@@ -34,7 +34,7 @@ app.post("/getresponse", async (req, res) => {
     const {prompt} = req.body;
     console.log(prompt)
     const completion = await openai.chat.completions.create({
-    messages: [{ role: "user", content: `${prompt} For the user input given, what type of insurance can be preferred to him whether Property or Liability insurance or both. Give me first just Property or Liability or both word without any additional words and then give the explanation in next sentence.` }],
+    messages: [{ role: "user", content: `${prompt} For the user input given, what type of insurance can be preferred to him whether Property or Liability insurance or both . Give me answer first just "Property" or "Liability" or "Both Property and Liability"  without any additional words and then give the explanation in next sentence.` }],
     model: "gpt-3.5-turbo",
   });
   res.send(completion.choices)

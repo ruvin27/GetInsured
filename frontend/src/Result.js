@@ -1,10 +1,12 @@
-import Navbar from "./Navbar.js";
+
 import { Container } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
-import CardCss from './css/Card.module.css';
+import CardCss from './css/result.module.css';
 import { useEffect } from "react";
 
 function Result() {
+
+
     useEffect(() => {
       const resp = localStorage.getItem('response');
       console.log(resp);
@@ -14,21 +16,42 @@ function Result() {
     const responseParts = localStorage.getItem('response').split('\n');
     const firstLine = responseParts[0];
     const restOfLines = responseParts.slice(1).join('\n');
+
   
     return (
       <div>
+        
         <Container className={CardCss.container}>
-          
-  
+        <Card style={{ width: '37rem', textAlign: 'center' }}>
+          <Card.Text className={CardCss.resultTitle}>  You have to choose <i>{firstLine}</i> !! </Card.Text>
+          <Card.Body>
+            <Card.Text className={CardCss.resultText}>{restOfLines}</Card.Text>
+          </Card.Body>
+        </Card>
+        </Container>
+        
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+  <h3 className={CardCss.resultTitle}>Other options you want to explore</h3>
+</div>
+        <Container className={CardCss.container3}>
+        <Container className={CardCss.container2}>
           <Card style={{ width: '28rem', textAlign: 'center' }}>
-          <Card.Text> <h3> Insurance type:{firstLine}</h3> </Card.Text>
-            <Card.Body>
-              
-              <Card.Text>{restOfLines}</Card.Text>
-            </Card.Body>
+            <Card.Text className={CardCss.resultText}> Property Insurance</Card.Text>
           </Card>
         </Container>
-      </div>
+
+        <Container className={CardCss.container2}>
+          <Card style={{ width: '28rem', textAlign: 'center' }}>
+            <Card.Text className={CardCss.resultText}>Liability Insurance</Card.Text>
+          </Card>
+        </Container>
+      
+    </Container>
+
+    
+    </div>
+    
+      
     );
   }
 

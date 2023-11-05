@@ -15,6 +15,7 @@ function QuestionsCard() {
   const [animateCard, setAnimateCard] = useState(''); // Initialize the animation state
   const [prompt, setPrompt] = useState("");
   const navigate = useNavigate();
+  const [otherValue, setOtherValue] = useState('')
 
   const setNextQuestion = () => {
     if (questionCount < questions.length - 1) {
@@ -47,6 +48,13 @@ function QuestionsCard() {
 		const option = event.target.value;
 		setDisplayOptions(option);
 	};
+
+  const handleInputChange = (e) =>{
+    const {value} = e.target;
+    setOtherValue(value)
+    setDisplayOptions(value)
+    
+  }
 
   const handleSubmit = async () => {
     questions[questionCount].answer = displayOptions;
@@ -81,6 +89,9 @@ function QuestionsCard() {
 									</option>
 								))}
 							</select>
+              {displayOptions === 'Other' && (
+                <input type="text" name='othervalue' placeholder="Enter the value"  value={otherValue} className={CardCss.select2} onChange={handleInputChange}/>
+              )}
 						</Card.Text>
 					</Card.Body>
 				</Card>
