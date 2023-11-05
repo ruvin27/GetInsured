@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import CardCss from "./css/Card.module.css";
 import { Link } from "react-router-dom";
-import Logo from "./images/logo.png";
+import Logo from "./images/logo.jpg";
 
 function CardInfo() {
 	return (

@@ -8,38 +8,48 @@ import questions from "./questions.js";
 function QuestionsCard() {
 	const [questionCount, setQuestionCount] = useState(0);
 	const [displayquestion, setDisplayQuestion] = useState(questions[0]);
-	const [displayOptions, setDisplayOptions] = useState("");
+	const [displayOptions, setDisplayOptions] = useState(questions[0].answer);
+  const [animateCard, setAnimateCard] = useState(''); // Initialize the animation state
 
-	console.log(questions);
 
-	const setNextQuestion = () => {
-		if (questionCount < questions.length - 1) {
-			const nextQuestion = questions[questionCount + 1];
-			setDisplayQuestion(nextQuestion);
-			setQuestionCount(questionCount + 1);
-			questions[questionCount].answer = displayOptions;
-		}
-	};
-
-	const setPreviousQuestion = () => {
-		if (questionCount <= questions.length - 1) {
-			const nextQuestion = questions[questionCount - 1];
-			setDisplayQuestion(nextQuestion);
-			setQuestionCount(questionCount - 1);
-		}
-	};
+  const setNextQuestion = () => {
+    if (questionCount < questions.length - 1) {
+      questions[questionCount].answer = displayOptions; // Set the answer for the current question
+      setAnimateCard('slide-out-right'); // Apply the exit animation
+      const nextQuestion = questions[questionCount + 1];
+      setDisplayQuestion(nextQuestion);
+      setQuestionCount(questionCount + 1);
+      setDisplayOptions(nextQuestion.options[0]); // Set the default value as the first option
+      setTimeout(() => setAnimateCard('slide-in-left'), 1200); // Apply the enter animation after 1.2 seconds
+    }
+  };
+  
+  const setPreviousQuestion = () => {
+    if (questionCount > 0) {
+      questions[questionCount].answer = displayOptions; // Set the answer for the current question
+      setAnimateCard('slide-out-left'); // Apply the exit animation
+      const prevQuestion = questions[questionCount - 1];
+      setDisplayQuestion(prevQuestion);
+      setQuestionCount(questionCount - 1);
+      setDisplayOptions(prevQuestion.answer || prevQuestion.options[0]); // Set the default value as the first option or the previous answer
+      setTimeout(() => setAnimateCard('slide-in-right'), 1200); // Apply the enter animation after 1.2 seconds
+    }
+  };
+  
 
 	const handleDropdownChange = (event) => {
 		const option = event.target.value;
 		setDisplayOptions(option);
 	};
-	console.log(displayOptions);
 
-	// console.log(questionCount);
-	// console.log(displayquestion);
+  const handleSubmit = () => {
+    questions[questionCount].answer = displayOptions;
+    console.log(questions);
+  }
+
 	return (
 		<div>
-			<Container className={CardCss.container}>
+			<Container className={`${CardCss.container} ${animateCard ? CardCss[animateCard] : ''}`}>
 				<Card className={`${CardCss.card} text-center`}>
 					<Card.Body>
 						<Card.Title className={CardCss.cardTitle}>Question {questionCount+1}/{questions.length}</Card.Title>
@@ -55,7 +65,19 @@ function QuestionsCard() {
 						</Card.Text>
 					</Card.Body>
 				</Card>
-
+        <div className={CardCss.progressBarContainer}>
+  <div className={CardCss.progressBar}>
+    <div
+      className={CardCss.progressBarFill}
+      style={{
+        width: `${((questionCount + 1) / questions.length) * 100}%`,
+      }}
+    ></div>
+  </div>
+  <div className={CardCss.progressText}>
+    Question {questionCount + 1} of {questions.length}
+  </div>
+</div>
 				<div className={CardCss.buttonContainerLeft}>
 					{questionCount >= 1 && (
 						<Button variant="primary" className={CardCss.button} style={{ width: "120px" }} onClick={() => setPreviousQuestion()}>
@@ -64,9 +86,12 @@ function QuestionsCard() {
 					)}
 				</div>
 				<div className={CardCss.buttonContainerRight}>
-					<Button variant="primary" className={CardCss.button} style={{ width: "120px" }} onClick={() => setNextQuestion()}>
-						{questionCount !== questions.length - 1 ? "Next" : "Submit"}
-					</Button>
+        {questionCount !== questions.length - 1 ? <Button variant="primary" className={CardCss.button} style={{ width: "120px" }} onClick={() => setNextQuestion()}>
+						Next
+            </Button> : <Button variant="primary" className={CardCss.button} style={{ width: "120px" }} onClick={handleSubmit}>
+						Submit
+            </Button>}
+					
 				</div>
 			</Container>
 		</div>
