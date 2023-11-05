@@ -11,8 +11,8 @@
 }
 @media (max-width: 768px) {
     .container {
-        width: 90%; /* Adjust the width for smaller screens */
-        padding: 20px; /* Adjust the padding for smaller screens */
+        width: 80%; /* Adjust the width for smaller screens */
+        padding: 20px;
     }
     .cardImage{
         width: 80%;
