@@ -1,9 +1,10 @@
-import { Container } from "react-bootstrap";
-import CardCss from "./css/questions.module.css";
-import { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import questions from "./questions.js";
+import { Container } from 'react-bootstrap';
+import CardCss from "./css/Card.module.css";
+import {useState} from "react";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import questions from './questions.js';
+import Navbar from "./Navbar.js";
 
 function QuestionsCard() {
 	const [questionCount, setQuestionCount] = useState(0);
@@ -98,4 +99,4 @@ function QuestionsCard() {
 	);
 }
 
-export default QuestionsCard;
+export default QuestionsCard
